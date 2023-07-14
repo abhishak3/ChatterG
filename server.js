@@ -37,6 +37,8 @@ function sendFile(response, filePath, fileContents) {
 */
 function serveStatic(response, cache, absPath) {
     if (!cache[absPath]) {
+        console.log(absPath);
+        console.log(fs.existsSync(absPath));
         if (fs.existsSync(absPath)) {
             fs.readFile(absPath, (err, data) => {
                 if (err) {
@@ -57,7 +59,6 @@ function serveStatic(response, cache, absPath) {
 var server = http.createServer((request, response) => {
     let filePath = request.url == '/' ? path.join('public', 'index.html'): path.join('public', request.url);
     let absPath = path.join(process.cwd(), filePath);
-    console.log(absPath);
     serveStatic(response, cache, absPath);
 });
 

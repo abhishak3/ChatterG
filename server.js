@@ -1,4 +1,3 @@
-var http = require('http');
 var fs = require('fs');
 var path = require('path');
 var mime = require('mime');
@@ -37,7 +36,6 @@ function sendFile(response, filePath, fileContents) {
 */
 function serveStatic(response, cache, absPath) {
     if (!cache[absPath]) {
-        console.log(fs.readdirSync('.'));
         if (fs.existsSync(absPath)) {
             fs.readFile(absPath, (err, data) => {
                 if (err) {

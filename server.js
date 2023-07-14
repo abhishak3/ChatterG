@@ -1,5 +1,6 @@
 var http = require('http');
 var fs = require('fs');
+var axios = require('axios');
 var path = require('path');
 var mime = require('mime');
 var chat_server = require('./lib/chat_server');
@@ -7,6 +8,7 @@ var chat_server = require('./lib/chat_server');
 var cache = {};
 
 const PORT = 5000;
+const BASE_URL = "https://chatter-g.vercel.app/";
 
 /*
 * Handles 404 Error Logic.
@@ -54,13 +56,33 @@ function serveStatic(response, cache, absPath) {
     }
 }
 
+/*
+* static files online
+*/
+async function serveStaticOnline(response, cache, absPath) {
+    if (!cache[absPath]) {
+        try {
+            axios
+                .get(absPath)
+                .then(({data}) => {
+                    cache[absPath] = data;
+                    sendFile(response, absPath, cache[absPath]);
+                });
+        } catch {
+            send404(response, 'Something Went Wrong!');
+        }
+    } else {
+        sendFile(response, absPath, cache[absPath]);
+    } 
+}
+
 var server = http.createServer((request, response) => {
-    let filePath = request.url == '/' ? path.join('public', 'index.html'): path.join('public', request.url);
-    let absPath = path.join(process.cwd(), filePath);
-    serveStatic(response, cache, absPath);
+    let filePath = request.url == '/' ? 'index.html' : request.url;
+    let absPath = BASE_URL + filePath;
+    serveStaticOnline(response, cache, absPath);
 });
 
-server.listen((PORT) => {
+server.listen(PORT, () => {
     console.log(`Server started on port: ${PORT}`);
 });
 

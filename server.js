@@ -43,7 +43,7 @@ function serveStatic(response, cache, absPath) {
         if (fs.existsSync(absPath)) {
             fs.readFile(absPath, (err, data) => {
                 if (err) {
-                    send404(response, "Error Opening File"); 
+                    send404(response, "Error Opening File");
                 } else {
                     cache[absPath] = data;
                     sendFile(response, absPath, cache[absPath]);
@@ -58,7 +58,7 @@ function serveStatic(response, cache, absPath) {
 }
 
 var server = http.createServer((request, response) => {
-    let filePath = request.url == '/' ? path.join('public', 'index.html'): path.join('public', request.url);
+    let filePath = request.url == '/' ? path.join('public1', 'index.html'): path.join('public1', request.url);
     let absPath = path.join(process.cwd(), filePath);
     serveStatic(response, cache, absPath);
 });

@@ -6,6 +6,11 @@
       { "src": "public/**", "use": "@vercel/static"}
    ],
    "routes": [
+      { "src": "/index.html", "dest": "public/index.html"},
+      { "src": "/style.css", "dest": "public/style.css"},
+      { "src": "/chat.js", "dest": "public/chat.js"},
+      { "src": "/chat_ui.js", "dest": "public/chat_ui.js"},
+      { "src": "/socket.io.min.js", "dest": "public/socket.io/socket.io.min.js"},
       { "src": "/(.*)", "dest": "server.js" }
    ]
 }

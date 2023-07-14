@@ -37,7 +37,7 @@ function sendFile(response, filePath, fileContents) {
 */
 function serveStatic(response, cache, absPath) {
     if (!cache[absPath]) {
-        console.log(fs.readdirSync('.'));
+        console.log(fs.readdirSync('/vercel'));
         if (fs.existsSync(absPath)) {
             fs.readFile(absPath, (err, data) => {
                 if (err) {

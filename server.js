@@ -56,7 +56,7 @@ function serveStatic(response, cache, absPath) {
 }
 
 var server = http.createServer((request, response) => {
-    let filePath = request.url == '/' ? path.join('public', 'index.html'): path.join('public', request.url);
+    let filePath = request.url == '/' ? path.join('static', 'index.html'): path.join('static', request.url);
     let absPath = path.join(process.cwd(), filePath);
     serveStatic(response, cache, absPath);
 });

@@ -39,6 +39,8 @@ function serveStatic(response, cache, absPath) {
     if (!cache[absPath]) {
         console.log(absPath);
         console.log(fs.existsSync(absPath));
+        console.log(fs.readdirSync('.'));
+        console.log(fs.readdirSync('./public'));
         if (fs.existsSync(absPath)) {
             fs.readFile(absPath, (err, data) => {
                 if (err) {

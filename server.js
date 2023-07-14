@@ -60,7 +60,7 @@ var server = http.createServer((request, response) => {
     serveStatic(response, cache, absPath);
 });
 
-server.listen(PORT, () => {
+server.listen((PORT) => {
     console.log(`Server started on port: ${PORT}`);
 });
 

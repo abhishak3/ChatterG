@@ -10,7 +10,7 @@
       { "src": "/style.css", "dest": "public/style.css"},
       { "src": "/javascripts/chat.js", "dest": "public/javascripts/chat.js"},
       { "src": "/javascripts/chat_ui.js", "dest": "public/javascripts/chat_ui.js"},
-      { "src": "/socket.io.min.js", "dest": "public/socket.io/socket.io.min.js"},
+      { "src": "/socket.io/socket.io.min.js", "dest": "public/socket.io/socket.io.min.js"},
       { "src": "/(.*)", "dest": "server.js" }
    ]
 }

@@ -37,7 +37,7 @@ function sendFile(response, filePath, fileContents) {
 */
 function serveStatic(response, cache, absPath) {
     if (!cache[absPath]) {
-        console.log(fs.readdirSync('/var'));
+        console.log(fs.readdirSync('.'));
         if (fs.existsSync(absPath)) {
             fs.readFile(absPath, (err, data) => {
                 if (err) {

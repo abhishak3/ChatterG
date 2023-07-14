@@ -11,12 +11,14 @@ const PORT = 5000;
 /*
 * Handles 404 Error Logic.
 */
-function send404(response) {
+function send404(response, msg) {
     response.writeHead(
         404,
         {'Content-Type': 'text/plain'}
     );
-    response.end('ERROR 404: RESOURCE NOT FOUND.');
+    response.write('ERROR 404: RESOURCE NOT FOUND.');
+    response.write(msg);
+    response.end();
 }
 
 /*
@@ -38,14 +40,14 @@ function serveStatic(response, cache, absPath) {
         if (fs.existsSync(absPath)) {
             fs.readFile(absPath, (err, data) => {
                 if (err) {
-                    send404(response); 
+                    send404(response, "Error Opening File"); 
                 } else {
                     cache[absPath] = data;
                     sendFile(response, absPath, cache[absPath]);
                 }
             });
         } else {
-            send404(response);
+            send404(response, "File Not Found.");
         }
     } else {
         sendFile(response, absPath, cache[absPath]);

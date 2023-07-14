@@ -38,7 +38,6 @@ function serveStatic(response, cache, absPath) {
         if (fs.existsSync(absPath)) {
             fs.readFile(absPath, (err, data) => {
                 if (err) {
-                    console.log("here");
                     send404(response); 
                 } else {
                     cache[absPath] = data;

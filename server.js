@@ -16,7 +16,7 @@ function send404(response) {
         404,
         {'Content-Type': 'text/plain'}
     );
-    response.end('ERROR 404: RESOURCE NOT FOUND. FR');
+    response.end('ERROR 404: RESOURCE NOT FOUND.');
 }
 
 /*

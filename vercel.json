@@ -1,9 +1,11 @@
 {
-   "version": 1,
+   "version": 2,
    "name": "ChatterG",
    "builds": [
-      { "src": "server.js", "use": "@vercel/node" }
+      { "src": "server.js", "use": "@vercel/node" },
+      { "src": "public/**", "use": "@vercel/static"}
    ],
+
    "routes": [
       { "src": "/(.*)", "dest": "/server.js" }
    ]

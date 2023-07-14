@@ -1,7 +1,10 @@
 {
    "version": 2,
    "name": "ChatterG",
+   "builds": [
+      { "src": "server.js", "use": "@now/node"}
+   ],
    "routes": [
-      { "src": "/(.*)", "dest": "/server.js" }
+      { "src": "/(.*)", "dest": "server.js" }
    ]
 }
